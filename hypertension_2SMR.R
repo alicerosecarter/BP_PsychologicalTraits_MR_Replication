@@ -118,6 +118,8 @@ swb_hyperten_liberal_meanF <- mean(harm_swb_hyperten_liberal$F)
 swb_hyperten_stringent_meanF <- mean(harm_swb_hyperten_stringent$F)
 
 # Run MR
+# Consider setting random seed so analyses/results are completely reproducible
+
 anxiety_hyperten_liberal_results <- mr(dat = harm_anxiety_hyperten_liberal)
 anxiety_hyperten_stringent_results <- mr(dat = harm_anxiety_hyperten_stringent)
 
