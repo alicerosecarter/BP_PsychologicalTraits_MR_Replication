@@ -126,6 +126,7 @@ swb_sbp_stringent_meanF <- mean(harm_swb_sbp_stringent$F)
 ################################################################################
                                     # Run MR #
 ################################################################################
+# Consider setting random seed so analyses/results are completely reproducible
 
 anxiety_sbp_liberal_results <- mr(dat = harm_anxiety_sbp_liberal)
 anxiety_sbp_stringent_results <- mr(dat = harm_anxiety_sbp_stringent)
