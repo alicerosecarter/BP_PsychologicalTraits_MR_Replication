@@ -75,19 +75,6 @@ dbp_stringent$r2 <- (2 * (dbp_stringent$beta.exposure^2) * dbp_stringent$eaf.exp
 dbp_stringent$F <- dbp_stringent$r2 * (dbp_stringent$N - 2) / (1 - dbp_stringent$r2)
 dbp_stringent_meanF <- mean(dbp_stringent$F)
 
-# F stats for each analysis
-anxiety_dbp_liberal_meanF <- mean(harm_anxiety_dbp_liberal$F)
-anxiety_dbp_stringent_meanF <- mean(harm_anxiety_dbp_stringent$F)
-
-depressive_symp_dbp_liberal_meanF <- mean(harm_depressive_symp_dbp_liberal$F)
-depressive_symp_dbp_stringent_meanF <- mean(harm_depressive_symp_dbp_stringent$F)
-
-neuroticism_dbp_liberal_meanF <- mean(harm_neuroticism_dbp_liberal$F)
-neuroticism_dbp_stringent_meanF <- mean(harm_neuroticism_dbp_stringent$F)
-
-swb_dbp_liberal_meanF <- mean(harm_swb_dbp_liberal$F)
-swb_dbp_stringent_meanF <- mean(harm_swb_dbp_stringent$F)
-
 # Find SNPs in outcome data
 ao <- available_outcomes()
 
@@ -117,6 +104,8 @@ harm_depressive_symp_dbp_liberal <- harmonise_data(exposure_dat = dbp_liberal, o
 harm_depressive_symp_dbp_stringent <- harmonise_data(exposure_dat = dbp_stringent, outcome_dat = depressive_symp_dbp_stringent)
 
 # Run and view MR
+# Consider setting random seed so analyses/results are completely reproducible
+
 anxiety_dbp_liberal_results <- mr(dat = harm_anxiety_dbp_liberal)
 anxiety_dbp_stringent_results <- mr(dat = harm_anxiety_dbp_stringent)
 
@@ -144,6 +133,20 @@ results_summary <- results_summary %>%
   mutate(id.outcome = recode(id.outcome, 'ukb-b-11311' = 'Anxiety', 'ieu-a-1009' = 'SWB', 'ieu-a-1007' = 'Neuroticism', 'ieu-a-1000' ='Depressive symptoms' ))
 
 write.xlsx(results_summary, file = "Results/DBP_exposure.xlsx")
+
+
+# Calculate F stats for each individual analysis
+anxiety_dbp_liberal_meanF <- mean(harm_anxiety_dbp_liberal$F)
+anxiety_dbp_stringent_meanF <- mean(harm_anxiety_dbp_stringent$F)
+
+depressive_symp_dbp_liberal_meanF <- mean(harm_depressive_symp_dbp_liberal$F)
+depressive_symp_dbp_stringent_meanF <- mean(harm_depressive_symp_dbp_stringent$F)
+
+neuroticism_dbp_liberal_meanF <- mean(harm_neuroticism_dbp_liberal$F)
+neuroticism_dbp_stringent_meanF <- mean(harm_neuroticism_dbp_stringent$F)
+
+swb_dbp_liberal_meanF <- mean(harm_swb_dbp_liberal$F)
+swb_dbp_stringent_meanF <- mean(harm_swb_dbp_stringent$F)
 
 ################################################################################
                         # Psychiatric traits exposure #
