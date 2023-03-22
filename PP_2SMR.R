@@ -168,6 +168,8 @@ swb_pp_liberal_meanF <- mean(harm_swb_pp_liberal$F)
 swb_pp_stringent_meanF <- mean(harm_swb_pp_stringent$F)
 
 # Run MR
+# Consider setting random seed so analyses/results are completely reproducible
+
 anxiety_pp_liberal_results <- mr(dat = harm_anxiety_pp_liberal)
 anxiety_pp_stringent_results <- mr(dat = harm_anxiety_pp_stringent)
 
